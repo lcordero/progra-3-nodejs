@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+ <br>
+ <div class="jumbotron">
+ <h1 class="display-4">Send Todo</h1>
+ <br>
+ <input id="name" class="form-control" placeholder="Name">
+ <br>
+ <textarea id="description" class="form-control" placeholder="Your description Here">
+</textarea>
+ <br>
+ <button id="send" class="btn btn-success">Send</button>
+ </div>
+ <div id="todos">0000</div>
+</div>
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+<script>
+
+$(() => {
+    function addTodos(todo){
+        $("#todos").append(`
+            <h4> ${todo.name} </h4>
+            <p>  ${todo.description} </p>`)
+    }
+    
+    function getTodos(){
+        $("#todos").empty();
+        $.get('http://localhost:3000/todos', (data) => {
+        data.forEach(addTodos);
+        })
+    }
+    
+    function sendTodo(todo){
+        $.post('http://localhost:3000/todos', todo)
+    }
+
+    $("#send").click(()=>{
+        sendTodo({
+          name: $("#name").val(), 
+          description:$("#description").val()
+        });
+        getTodos();
+    });
+
+    getTodos();
+})
+</script>
+</body>
+</html>
