@@ -19,42 +19,15 @@
  <br>
  <button id="send" class="btn btn-success">Send</button>
  </div>
- <div id="todos">0000</div>
+ <div id="todos"> </div>
 </div>
 <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-<script>
 
-$(() => {
-    function addTodos(todo){
-        $("#todos").append(`
-            <h4> ${todo.name} </h4>
-            <p>  ${todo.description} </p>`)
-    }
-    
-    function getTodos(){
-        $("#todos").empty();
-        $.get('http://localhost:3000/todos', (data) => {
-        data.forEach(addTodos);
-        })
-    }
-    
-    function sendTodo(todo){
-        $.post('http://localhost:3000/todos', todo)
-    }
+<script src="./myfile.js"></script>
 
-    $("#send").click(()=>{
-        sendTodo({
-          name: $("#name").val(), 
-          description:$("#description").val()
-        });
-        getTodos();
-    });
+<body>
+<html>
 
-    getTodos();
-})
-</script>
-</body>
-</html>
