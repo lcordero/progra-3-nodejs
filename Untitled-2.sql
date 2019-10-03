@@ -1,0 +1,1 @@
+SELECT * FROM `curso`.`scores` LIMIT 1000;
