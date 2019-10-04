@@ -1,4 +1,4 @@
-(() => {
+$(() => {
     function addTodos(todo){
         $("#todos").append(`
             <h4> ${todo.name} </h4>
@@ -8,7 +8,7 @@
     function getTodos(){
         $("#todos").empty();
         $.get('http://localhost:3000/todos', (data) => {
-        data.forEach(addTodos);
+            data.forEach(addTodos);
         })
     }
     
@@ -26,6 +26,3 @@
 
     getTodos();
 })
-</script>
-</body>
-<html></html>

@@ -10,7 +10,7 @@ app.use(express.static(__dirname));
 
 var mongoose = require('mongoose');
 
-var dbUrl = 'mongodb+srv://jairo11:stefanny11@cluster0-orxmw.mongodb.net/admin?retryWrites=true&w=majority'
+var dbUrl = 'mongodb+srv://jairo11:stefanny11@cluster0-orxmw.mongodb.net/test?retryWrites=true&w=majority'
 
 mongoose.connect(dbUrl , (err) => { 
     console.log('mongodb connected',err);
@@ -32,8 +32,9 @@ app.get('/todos', (req, res) => {
 app.post('/todos', (req, res) => {
     var todo = new Todo(req.body);
     todo.save((err) =>{
-      if(err)
+      if(err){
         sendStatus(500);
+      }
       res.sendStatus(200);
     })
   })
