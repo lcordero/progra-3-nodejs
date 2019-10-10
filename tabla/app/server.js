@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 
 
-app.remove('/users', (req, res) => {
+app.get('/users', (req, res) => {
     User.find({},(err, users)=> {
       res.send(users);
     })
