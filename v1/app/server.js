@@ -1,4 +1,4 @@
-var express = require('express');
+ var express = require('express');
 
 var app = express();
 
@@ -10,7 +10,7 @@ app.use(express.static(__dirname));
 
 var mongoose = require('mongoose');
 
-var dbUrl = 'mongodb+srv://lcordero:P4ssw0rd@progra3-oh8l9.mongodb.net/test?retryWrites=true&w=majority'
+var dbUrl = 'mongodb+srv://isaaczb12:Ccxx745z@progra-3-lvfu9.mongodb.net/test?retryWrites=true&w=majority'
 
 mongoose.connect(dbUrl , (err) => { 
     console.log('mongodb connected',err);
