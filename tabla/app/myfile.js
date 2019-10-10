@@ -1,6 +1,6 @@
 $(() => {
-    function addTodos(todo){
-        $("#todos").append(`
+    function addUsers(user){
+        $("#users").append(`
             <h4> ${todo.name} </h4>
             <p>  ${todo.description} </p>`)
     }
