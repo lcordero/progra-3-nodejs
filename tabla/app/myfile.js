@@ -1,7 +1,7 @@
 $(() => {
     function addTodos(todo){
         $("#todos").append(`
-            <h4> ${todo.name} </h4>
+            <h4> ${todo.nombre} </h4>
             <p>  ${todo.description} </p>`)
     }
     
