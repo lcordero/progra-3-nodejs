@@ -16,7 +16,7 @@ mongoose.connect(dbUrl , (err) => {
     console.log('mongodb connected',err);
  })
 
- var User = mongoose.model('User',{ Nombre : String, Apellido : String, Edad : Number, Accion : String})
+ var User = mongoose.model('User',{ Nombre : String, Apellido : String, Edad : Number, Sexo : String, Accion : String})
 
 var bodyParser = require('body-parser')
 app.use(bodyParser.json());
