@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
         rel="stylesheet" 
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-        crossorigin="anonymous"> -->
+        crossorigin="anonymous">
 </head>
-<div class="container">
- <br>
- <div class="jumbotron">
- <h1 class="display-4">Usuarios</h1>
- <br>
- <table id= "User" >
- <thead>
+  <br>
+  <h2> <caption>Usuarios</caption> </h2>
+ <table style= "width:80%" border 1 class="us_tabla">
      <tr>
-         <tr>Nombre </tr>
-         <tr>Apellido </tr>
-         <tr>Edad </tr>
-         <tr>Sexo </tr>
-         <tr>Accion </tr>
-         </tr>
- </thead>
+         <th>Nombre </th>
+         <th>Apellido </th>
+         <th>Edad </th>
+         <th>Sexo </th>
+         <th>Accion </th>
+     </tr>
+     <tr>
+         <td>Leila</td>
+         <td>Rodriguez</td>
+         <td>65</td>
+         <td>F</td>
+         <td><button usuario_id="1" class="fas fa-user-plus remove"></td>
+     </tr>
  </table>
- </div>
-
- <br>
  <button id="Agregar" class="btn btn-success">Agregar</button>
  </div>
  <div id="users"> </div>

@@ -1,7 +1,7 @@
 $(() => {
     function addTodos(todo){
         $("#todos").append(`
-            <h4> ${todo.nombre} </h4>
+            <h2> ${todo.nombre} </h2>
             <p>  ${todo.description} </p>`)
     }
     
@@ -11,7 +11,7 @@ $(() => {
             data.forEach(addTodos);
         })
     }
-    
+
     function sendTodo(todo){
         $.post('http://localhost:3000/todos', todo)
     }
