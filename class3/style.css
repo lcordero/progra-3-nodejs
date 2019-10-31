@@ -1,7 +1,11 @@
-body {
+html, body, input {
   background: #fff;
   padding: 20px;
   font-family: Helvetica;
+}
+
+table, th, td {
+  border: 1px solid black;
 }
 
 #banner-message {
@@ -16,12 +20,19 @@ body {
 }
 
 button {
-  background: #0084ff;
   border: none;
   border-radius: 5px;
   padding: 8px 14px;
   font-size: 15px;
   color: #fff;
+}
+
+button.add {
+  background-color: green;
+}
+
+button.remove {
+  background-color: red;
 }
 
 #banner-message.alt {
@@ -34,8 +45,4 @@ button {
 #banner-message.alt button {
   background: #fff;
   color: #000;
-}
-.data {
-  position: realtive;
-  left: 10px;
 }
