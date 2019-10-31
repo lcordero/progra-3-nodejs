@@ -1,0 +1,8 @@
+git fetch origin
+git branch
+git checkout <  >
+git checkout -b < >
+git status
+git add .
+git commit -m "  "
+git push origin < >
