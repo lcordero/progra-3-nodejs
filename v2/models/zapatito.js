@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 
 const ZapatitoSchema = Schema({
   name: String,
-  tamaño: { type: Number, default: 0 },
+  size: { type: Number, default: 0 },
   description: String
 })
 
