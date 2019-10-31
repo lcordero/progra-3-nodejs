@@ -13,7 +13,7 @@ api.post('/product', productCtrl.saveProduct)
 api.put('/product/:productId', productCtrl.updateProduct)
 api.delete('/product/:productId', productCtrl.deleteProduct)
 
-api.get('/zapatito', zapatitoCtrl.getZapatitos)
+api.get('/zapatito', zapatitoCtrl.getZapatito)
 api.post('/zapatito', zapatitoCtrl.saveZapatito)
 // api.get('/product', auth, productCtrl.getProducts)
 // api.get('/product/:productId', productCtrl.getProduct)

@@ -27,6 +27,6 @@ function getZapatito (req, res) {
 
 
   module.exports = {
-    getProduct,
-    saveProduct,
+    getZapatito,
+    saveZapatito,
   }
