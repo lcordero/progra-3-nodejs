@@ -6,3 +6,4 @@ git status
 git add .
 git commit -m "  "
 git push origin < >
+git pull origin master
