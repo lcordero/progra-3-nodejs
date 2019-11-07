@@ -9,9 +9,9 @@ const postsSchema = new Schema({
 
 module.export = mongoose.model('Posts', postsSchema);
 
-const commentSchema = new Schema({
+const CommentSchema = new Schema({
     name: String,
     posts: [{ type: Schema.Types.ObjectId, ref: 'Posts'}]
 });
 
-module.export = mongoose.model('Comment', ComentSchema);
+module.export = mongoose.model('Comment', CommentSchema);
