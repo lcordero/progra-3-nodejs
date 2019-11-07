@@ -12,8 +12,8 @@ const api = express.Router()
 api.get(`/zapato`, zapatoCtrl.getZapatos)
 api.get(`/zapato/:zapatoId`, zapatoCtrl.getZapato)
 api.post(`/zapato`, zapatoCtrl.saveZapato)
-Audio.delete(`zapato/:zapatoId`, zapatoCtrl.deleteZapato)
-
+api.delete(`zapato/:zapatoId`, zapatoCtrl.deleteZapato)
+ 
 api.get('/product', productCtrl.getProducts)
 api.get('/product/:productId', productCtrl.getProduct)
 api.post('/product', productCtrl.saveProduct)
