@@ -35,7 +35,7 @@ function savePosts (req, res) {
     posts.save((err, postsStored) => {
       if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err} `})
   
-      res.status(200).send({ posts: postStored })
+      res.status(200).send({ posts: postsStored })
     })
 }
   
@@ -44,9 +44,9 @@ function updatePosts (req, res) {
     let update = req.body
   
     Posts.findByIdAndUpdate(postsId, update, (err, postsUpdated) => {
-      if (err) res.status(500).send({message: `Error al actualizar el post: ${err}`})
+      if (err) res.status(500).send({message: `Error al actualizar el posts: ${err}`})
   
-      res.status(200).send({ posts: postUpdated })
+      res.status(200).send({ posts: postsUpdated })
     })
 }
   
