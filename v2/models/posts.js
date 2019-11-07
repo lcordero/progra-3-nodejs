@@ -4,14 +4,14 @@ const Schema = mongoose.Schema
 const postsSchema = new Schema({
     title: String,
     coments: String,
-    author: { type: String, ref: 'Coment' }
+    author: { type: String, ref: 'Comment' }
 });
 
 module.export = mongoose.model('Posts', postsSchema);
 
-const comentSchema = new Schema({
+const commentSchema = new Schema({
     name: String,
     posts: [{ type: Schema.Types.ObjectId, ref: 'Posts'}]
 });
 
-module.export = mongoose.model('Coment', ComentSchema);
+module.export = mongoose.model('Comment', ComentSchema);
