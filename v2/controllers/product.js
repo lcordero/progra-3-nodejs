@@ -1,4 +1,4 @@
-'use strict'
+'iuse strct'
 
 const Product = require('../models/product')
 
