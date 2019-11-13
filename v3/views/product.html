@@ -1,0 +1,69 @@
+<div id="main-container">
+    <input class="prod_name" placeholder="ProductName" />
+    <input class="prod_price" placeholder="ProductPrice" />
+    <button class="send">New</button>
+    <table style="width:100%" class="data_table">
+        <thead class="header">
+            <tr>
+              <th>ProdName</th>
+              <th>ProdPrice</th>
+            </tr>
+        </thead>
+      <tbody class="table_content">
+      </tbody>
+    </table>
+  </div>
+
+
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+<script>
+    var table_content = $(".table_content")
+    var send_content = $(".send")
+    var input_content = $(':input')
+
+    
+    var socket = io.connect(window.location.host);
+    socket.on('connect', function() {
+        console.log('connect');
+    });
+
+    socket.on('new_product', function(product) {
+        if (!product.name || !product.price) return
+        table_content.append(`
+            <tr>
+            <th>`+ product.name +`</th>
+            <th>`+ product.price +`</th>
+            </tr>
+        `)
+    });
+
+    socket.on('disconnect', function(){
+        console.log('Desconectado');
+    });
+
+    send_content.on("click", function(){
+        socket.emit('new_product', {
+            'name': $(".prod_name").val(), 
+            'price': $(".prod_price").val()
+        });
+        input_content.val('');
+    })
+
+
+    var load_content = function(url){
+        $.get( url, function( data ) {
+            table_content.empty()
+            $.each( data.products, function( i, product ) {
+                table_content.append(`
+                    <tr>
+                    <th>`+ product.name +`</th>
+                    <th>`+ product.price +`</th>
+                    </tr>
+                `)
+            })
+        })
+    }
+
+    load_content('http://'+ window.location.host +'/api/product')
+</script>
