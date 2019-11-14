@@ -29,6 +29,7 @@
     });
 
     socket.on('new_product', function(product) {
+        
         if (!product.name || !product.price) return
         table_content.append(`
             <tr>
@@ -37,16 +38,23 @@
             </tr>
         `)
     });
-
-    socket.on('disconnect', function(){
-        console.log('Desconectado');
-    });
+    
 
     send_content.on("click", function(){
+        
+        
         socket.emit('new_product', {
             'name': $(".prod_name").val(), 
             'price': $(".prod_price").val()
         });
+        $.post("http://localhost:3001/api/product",
+        {
+            name: $('.prod_name').val(),
+            price: $(".prod_price").val(),
+            test: "test.js",
+            category: 'computers',
+            description:"Nulo"
+        })
         input_content.val('');
     })
 
