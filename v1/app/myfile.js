@@ -1,3 +1,4 @@
+
 $(() => {
     function addTodos(todo){
         $("#todos").append(`
@@ -15,7 +16,6 @@ $(() => {
     function sendTodo(todo){
         $.post('http://localhost:3000/todos', todo)
     }
-// hola
     $("#send").click(()=>{
         sendTodo({
           name: $("#name").val(), 
@@ -23,6 +23,5 @@ $(() => {
         });
         getTodos();
     });
-
     getTodos();
 })
