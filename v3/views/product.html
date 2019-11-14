@@ -43,12 +43,21 @@
     });
 
     send_content.on("click", function(){
+
+        $.post("http://localhost:3001/api/product", 
+        {name: $(".prod_name").val(), 
+        price: $(".prod_price").val()
+
+        
+        })
         socket.emit('new_product', {
             'name': $(".prod_name").val(), 
             'price': $(".prod_price").val()
         });
         input_content.val('');
     })
+
+     
 
 
     var load_content = function(url){
