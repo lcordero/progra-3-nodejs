@@ -25,36 +25,7 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-<script>
+<script src="./myfile.js"></script>
 
-$(() => {
-    function addTodos(todo){
-        $("#todos").append(`
-            <h4> ${todo.name} </h4>
-            <p>  ${todo.description} </p>`)
-    }
-    
-    function getTodos(){
-        $("#todos").empty();
-        $.get('http://localhost:3000/todos', (data) => {
-        data.forEach(addTodos);
-        })
-    }
-    
-    function sendTodo(todo){
-        $.post('http://localhost:3000/todos', todo)
-    }
-
-    $("#send").click(()=>{
-        sendTodo({
-          name: $("#name").val(), 
-          description:$("#description").val()
-        });
-        getTodos();
-    });
-
-    getTodos();
-})
-</script>
-</body>
-</html>
+<body>
+<html>
