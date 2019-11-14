@@ -47,6 +47,11 @@
             'name': $(".prod_name").val(), 
             'price': $(".prod_price").val()
         });
+
+        $.post("http://localhost:3001/api/product",{
+        name: $(".prod_name").val(),
+        price: $(".prod_price").val()})
+
         input_content.val('');
     })
 
