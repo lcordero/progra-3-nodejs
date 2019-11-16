@@ -16,11 +16,7 @@ function getProduct (req, res) {
 function getProducts (req, res) {
   Product.find({}, (err, products) => {
     if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
-<<<<<<< HEAD
     if (!products || products.length == 0) return res.status(404).send({message: 'No existen productos'})
-=======
-    if (!products) return res.status(404).send({message: 'No existen productos'})
->>>>>>> 5c25debc8ff135dd5eebe68d1470cc83b348b2d3
 
     res.send(200, { products })
   })
