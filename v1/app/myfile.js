@@ -8,7 +8,7 @@ $(() => {
     function getTodos(){
         $("#todos").empty();
         $.get('http://localhost:3000/todos', (data) => {
-        data.forEach(addTodos);
+            data.forEach(addTodos);
         })
     }
     
