@@ -22,10 +22,10 @@
     var send_content = $(".send")
     var input_content = $(':input')
 
-    
     var socket = io.connect(window.location.host);
     socket.on('connect', function() {
         console.log('connect');
+        socket.send('connect yujuu!')
     });
 
     socket.on('new_product', function(product) {
