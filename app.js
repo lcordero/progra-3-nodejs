@@ -22,9 +22,6 @@ app.use('/api', api)
 app.get('/login', (req, res) => {
   res.render('login')
 })
-app.get('/product', (req, res) => {
-  res.sendFile(path.join(viewsPath+'product.html'));
-})
 
 
 
