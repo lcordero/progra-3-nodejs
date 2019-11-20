@@ -35,6 +35,11 @@ mongoose.connect(config.db, (err, res) => {
           client.broadcast.send(msg);
       });
 
+      client.on('connect', function(msg) {
+        console.log(msg)
+      });
+
+
       client.on('disconnect', function() {
           console.log('Desconectado');
       });
