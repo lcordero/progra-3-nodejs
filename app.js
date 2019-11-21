@@ -22,6 +22,9 @@ app.use('/api', api)
 app.get('/login', (req, res) => {
   res.render('login')
 })
+app.get('/tarjetas', (req, res) => {
+  res.sendFile(path.join(viewsPath+'tarjetas.html'));
+})
 
 
 

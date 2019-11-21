@@ -1,9 +1,65 @@
 <!DOCTYPE html>
 
-<link href="style.css">
+<style>
+        .rojo {
+        background: blue;
+        }
+        .rojo.new {
+        background: red;
+        }
+    </style>
 
-<button style="background: white;">rojo</button>
+<button class = "btn" style = "background: white;">rojo</button>
 <br>
-<button style="background: white;">verde</button>
+<button class="btn2" style="background: white;">verde</button>
 <br>
-<button style="background: white;">amarillo</button>
+<button class="btn3" style="background: white;">amarillo</button>
+
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+
+
+<script>
+    var btn = $(".rojo")
+    var verdebtn = $(".verdec")
+    var amarillobtn = $(".amarilloc")
+ 
+ btn.on("click", function(){
+	btn.addClass("new")
+ })
+
+</script>
+<button class = "rojo">color</button>
+<!--script>
+    var boton = "background: white";
+    function setColor(btn, color){
+        var property = document.getElementById(btn);
+        if (boton == 0) {
+            property.style.backgroundColor = "white"
+            boton = 1;
+        }
+        else{
+            property.style.backgroundColor = "red"
+            boton = 0;
+        }
+    }
+
+    var socket = io.connect(window.location.host);
+    socket.on('connect', function() {
+        console.log('connect');
+    });
+
+    send_content.on("click", function(){
+        socket.load('tarjetas.color', {
+        });
+
+        $.post("http://localhost:3001/api/tarjetas",{
+            name: $(".tarjetas_name").val(),
+            color: $(".tarjetas_color").val(),
+        });
+
+        button_content.val('');
+    
+    })
+
+</script-->
