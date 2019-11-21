@@ -9,6 +9,7 @@
         background: white;
         display: block;
         justify-content: space-between;
+        right: 20%;
     }
     
     .rojo.new {
@@ -31,24 +32,9 @@
     var btnverde = $(".btnv")
     var btnamarillo = $(".btna")
  
- btn.on("click", function(){
-	btn.addClass("new")
+ btnrojo.on("click", function(){
+	btnrojo.toggleClass("new")
  })
-
-</script>
-<!--script>
-    var boton = "background: white";
-    function setColor(btn, color){
-        var property = document.getElementById(btn);
-        if (boton == 0) {
-            property.style.backgroundColor = "white"
-            boton = 1;
-        }
-        else{
-            property.style.backgroundColor = "red"
-            boton = 0;
-        }
-    }
 
     var socket = io.connect(window.location.host);
     socket.on('connect', function() {
@@ -68,4 +54,4 @@
     
     })
 
-</script-->
+</script>
