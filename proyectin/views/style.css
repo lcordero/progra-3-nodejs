@@ -1,0 +1,27 @@
+.sexy_body,body{
+    background:#5bb98a;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 20px;
+}
+tr{
+    margin-left: 15%;
+}
+button,.red_button, .blue_button, .green_button{
+    background: #e3dac9;
+    color:black;
+    font-size: 15px;
+    padding: 15px;
+    margin:15px;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+.red_button{
+    background:#da2d2d;
+}
+.blue_button{
+    background-color: cornflowerblue;
+}
+.green_button{
+    background-color: lightgreen;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mini Proyecto</title>
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+</head>
+<body>
+    <h1>Some really sexy buttons</h1>
+    <tr class ="sexy_body">
+        <td class="sexy_data">
+            <button type="button"  id="1"  >I'm</button>
+        </td>
+        <td class="sexy_data">
+            <button type="button"  id="2">so</button> 
+        </td>
+        <td class="sexy_data">
+            <button type="button"  id="3">sexy</button>
+        </td>
+    </tr>
+    
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+<script>
+    var button_One = $("#1")
+    var button_Two = $("#2")
+    var button_Three = $("#3")
+    var buttons = $(":button")
+
+    jQuery.each( [ "put", "delete" ], function( i, method ) {
+        jQuery[ method ] = function( url, data, callback, type ) {
+        if ( jQuery.isFunction( data ) ) {
+                type = type || callback;
+                callback = data;
+                data = undefined;
+        }
+
+        return jQuery.ajax({
+                url: url,
+                type: method,
+                dataType: type,
+                data: data,
+                success: callback
+            });
+        };
+    });
+
+    var socket = io.connect(window.location.host);
+
+    socket.on('connect', function() {
+
+    console.log('connect');
+
+
+
+    button_One.on("click", function(){
+        if (button_One[0].className != "red_button"){
+            button_One.addClass("red_button");
+            $.put('http://localhost:3001/api/card/1',{activo:true, buttonId:'1'});
+
+        }else{
+            button_One.removeClass("red_button");
+            $.put('http://localhost:3001/api/card/1',{activo:false, buttonId:'1'})
+        };
+    })
+
+    button_Two.on("click", function(){
+        if (button_Two[0].className != "green_button"){
+            button_Two.addClass("green_button");
+            $.put('http://localhost:3001/api/card/2',{activo:true, buttonId:'2'});
+
+        }else{
+            button_Two.removeClass("green_button");
+            $.put('http://localhost:3001/api/card/2',{activo:false, buttonId:'2'});
+
+        };
+    })
+
+
+    button_Three.on("click", function(){
+        if (button_Three[0].className != "blue_button"){
+            button_Three.addClass("blue_button");
+            $.put('http://localhost:3001/api/card/3',{activo:true, buttonId:'3'});
+
+        }else{
+            button_Three.removeClass("blue_button");
+            $.put('http://localhost:3001/api/card/3',{activo:false, buttonId:'3'});
+        }
+
+    })
+
+    socket.on('clicked', function(button_clicked) {
+        console.log(button_clicked)
+        $('#'+button_clicked.buttonId).removeClass()
+        $('#'+button_clicked.buttonId).addClass(button_clicked.color)
+    });
+
+    buttons.on("click", function(){
+        var button_clicked = document.activeElement
+        socket.emit('clicked', {
+            'buttonId': document.activeElement.id,
+            'color':document.activeElement.className
+        });
+    }) 
+
+    var load_content = function(url){
+        $.get( url, function( data ) {
+            if (data.cards[0].activo){button_One.addClass("red_button")}
+            if (data.cards[1].activo){button_Two.addClass("green_button")}
+            if (data.cards[2].activo){button_Three.addClass("blue_button")}  
+        })
+    }
+
+    load_content('http://'+ window.location.host +'/api/cards')
+
+
+});
+</script>
+</body>
+</html>
