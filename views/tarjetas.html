@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 
 <style>
-        .rojo {
-        background: blue;
-        }
-        .rojo.new {
+    * {
+        padding: 20px 40px;
+        font-size: 15px;
+        border-radius: 5px;
+    
+    }
+    .btnr {
+        background: white;
+        display: block;
+        justify-content: space-between;
+        
+    }
+    .btnv {
+        background: white;
+        display: block;
+        justify-content: space-between;
+        
+    }
+    .btna {
+        background:white;
+        display: block;
+        justify-content: space-between;
+        
+    }
+    .rojo.new {
         background: red;
-        }
-    </style>
+    }
+</style>
 
-<button class = "btn" style = "background: white;">rojo</button>
+<button class = "btnr">rojo</button>
 <br>
-<button class="btn2" style="background: white;">verde</button>
+<button class = "btnv">verde</button>
 <br>
-<button class="btn3" style="background: white;">amarillo</button>
+<button class = "btna">amarillo</button>
 
 <script src="/assets/jquery.js"></script>
 <script src="/assets/socket.io.js"></script>
@@ -29,7 +50,6 @@
  })
 
 </script>
-<button class = "rojo">color</button>
 <!--script>
     var boton = "background: white";
     function setColor(btn, color){
