@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
 
 <style>
     .btnr, .btnv, .btna {
@@ -23,18 +25,17 @@
 <br>
 <button class = "btna">amarillo</button>
 
-<script src="/assets/jquery.js"></script>
-<script src="/assets/socket.io.js"></script>
-
-
 <script>
-    var btnrojo = $(".btnr")
-    var btnverde = $(".btnv")
-    var btnamarillo = $(".btna")
+//    var btnrojo = $(".btnr")
+//    var btnverde = $(".btnv")
+//   var btnamarillo = $(".btna")
  
- btnrojo.on("click", function(){
-	btnrojo.toggleClass("new")
- })
+//btnrojo.on("click", function(){
+//	btnrojo.toggleClass("new")
+// })
+ $ (".btnr").click(function() {
+     $(".btnr").togglClass("new");
+ });
 
     var socket = io.connect(window.location.host);
     socket.on('connect', function() {
