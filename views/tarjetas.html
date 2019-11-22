@@ -14,8 +14,14 @@
         right: 20%;
     }
     
-    .rojo.new {
+    .rojo {
         background: red;
+    }
+    .verde {
+        background: green;
+    }
+    .amarillo {
+        background: yellow;
     }
 </style>
 
@@ -26,33 +32,45 @@
 <button class = "btna">amarillo</button>
 
 <script>
-//    var btnrojo = $(".btnr")
-//    var btnverde = $(".btnv")
+//   var btnrojo = $(".btnr")
+//   var btnverde = $(".btnv")
 //   var btnamarillo = $(".btna")
- 
+ var send_content = $('click')
 //btnrojo.on("click", function(){
 //	btnrojo.toggleClass("new")
 // })
  $ (".btnr").click(function() {
-     $(".btnr").togglClass("new");
+     $(".btnr").toggleClass("rojo");
+     console.log("click XD")
  });
 
+ $ (".btnv").click(function() {
+     $(".btnv").toggleClass("verde");
+     console.log("click XC")
+ });
+
+ $ (".btna").click(function() {
+     $(".btna").toggleClass("amarillo");
+     console.log("click X/")
+ });
     var socket = io.connect(window.location.host);
     socket.on('connect', function() {
         console.log('connect');
     });
-
-    send_content.on("click", function(){
-        socket.load('tarjetas.color', {
-        });
-
-        $.post("http://localhost:3001/api/tarjetas",{
-            name: $(".tarjetas_name").val(),
-            color: $(".tarjetas_color").val(),
-        });
-
-        button_content.val('');
-    
+    socket.on('disconnect', function(){
+        console.log('Desconectado');
     })
+    send_content.on("click", function(){
+      socket.emit({name:"btnr", color:0})
+      console.log('esto q');
+       
+        $.post("http://localhost:3001/tarjetas",{
+        name: $(".tarjetas_name").val(),
+        color: $(".tarjetas_color").val(),
+        });
+
+     send_content.val('');
+    });
+    
 
 </script>
