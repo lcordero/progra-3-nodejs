@@ -35,7 +35,7 @@
 //   var btnrojo = $(".btnr")
 //   var btnverde = $(".btnv")
 //   var btnamarillo = $(".btna")
- var send_content = $.on('click')
+var send_content = $('click')
 //btnrojo.on("click", function(){
 //	btnrojo.toggleClass("new")
 // })
@@ -64,7 +64,7 @@
       socket.emit({name:"btnr", color:0})
       console.log('esto q');
        
-        $.post("http://localhost:3001/tarjetas",{
+        $.post("http://localhost:3001/api/tarjetas",{
         name: $(".tarjetas_name").val(),
         color: $(".tarjetas_color").val(),
         });
