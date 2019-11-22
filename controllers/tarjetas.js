@@ -18,7 +18,15 @@ function saveTarjeta (req, res) {
     res.status(200).send({ tarjeta: tarjetaStored })
 }
 
+function updateTarjeta (req, res) {
+    let tarjeta = req.param.tarjeta
+    let update = req.body
+
+    res.status(200).send({message: "Cambio de color"})
+}
+
 module.exports = {
     getTarjeta,
     saveTarjeta,
+    updateTarjeta,
 }
