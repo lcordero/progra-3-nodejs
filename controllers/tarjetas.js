@@ -9,7 +9,7 @@ function getTarjeta (req, res) {
 }
 
 function saveTarjeta (req, res) {
-    console.log('POST /api/tarjetas')
+    console.log('POST /tarjetas')
 
     let tarjeta = new Tarjeta()
     tarjeta.name = req.body.name
@@ -18,15 +18,15 @@ function saveTarjeta (req, res) {
     res.status(200).send({ tarjeta: tarjetaStored })
 }
 
-function updateTarjeta (req, res) {
-    let tarjeta = req.param.tarjeta
-    let update = req.body
-
-    res.status(200).send({message: "Cambio de color"})
-}
+//function updateTarjeta (req, res) {
+//    let tarjeta = req.param.tarjeta
+//    let update = req.body
+//
+//    res.status(200).send({message: "Cambio de color"})
+//}
 
 module.exports = {
     getTarjeta,
     saveTarjeta,
-    updateTarjeta,
+  //  updateTarjeta,
 }
