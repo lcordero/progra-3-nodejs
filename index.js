@@ -12,13 +12,30 @@ mongoose.connect(config.db, (err, res) => {
   console.log('Conexión a la base de datos establecida...')
 
   
-
   let socket = io.listen(
     app.listen(config.port, () => {
       console.log(`API REST corriendo en http://localhost:${config.port}`)
     })
   );
   
+  socket.on('connection', function(client) {
+    client.send("nueva conexion");
+    client.broadcast.send("nueva conexion");
 
+    client.on('tarjeta', function(tarjeta) {
+      console.log(tarjeta)
+      client.emit('tarjeta', tarjeta);
+      client.broadcast.emit('tarjeta', tarjeta);
+    });
+
+    client.on('message', function(msg) {
+        console.log(msg)
+        client.send(msg);
+        client.broadcast.send(msg);
+    });
+
+    client.on('disconnect', function() {
+        console.log('Desconectado');
+    });
+  });
 })
-
