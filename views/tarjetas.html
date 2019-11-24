@@ -25,11 +25,11 @@
     }
 </style>
 
-<button class = "btnr">rojo</button>
+<button class = "btnr" name="rojo">rojo</button>
 <br>
-<button class = "btnv">verde</button>
+<button class = "btnv" name="verde">verde</button>
 <br>
-<button class = "btna">amarillo</button>
+<button class = "btna" name="amarillo">amarillo</button>
 
 <script>
     btnr = $(".btnr")
@@ -37,26 +37,40 @@
     btna = $(".btna")
     boton_cambio = $(':button')
     send_content = $(':button')
-    
+    function tarjeta(name,color){
+        this.name=name;
+        this.color=color;
+    }
 
 btnr.on("click", function(color){
    $(".btnr").toggleClass("rojo")
     console.log("red")
 });
-
+btnr.on("click", function(name){
+   $(".btnr").hasClass("rojo").toString();
+    console.log("1")
+});
 
  //$ (".btnr").click(function() {
  //    $(".btnr").toggleClass("rojo");
  //    console.log("click XD")
  //});
 
- $ (".btnv").click(function() {
+ $ (".btnv").click(function(color) {
      $(".btnv").toggleClass("verde");
      console.log("click XC")
  });
- 
- $ (".btna").click(function() {
+ $ (".btnv").click(function(name) {
+     $(".btnv").hasClass("verde").toString();
+     console.log("click XC")
+ });
+
+ $ (".btna").click(function(color) {
      $(".btna").toggleClass("amarillo");
+     console.log("click X/")
+ });
+ $ (".btna").click(function(name) {
+     $(".btna").hasClass("amarillo").toString();
      console.log("click X/")
  });
  
@@ -67,7 +81,7 @@ btnr.on("click", function(color){
 
     socket.on('cam_tarjeta', function(tarjeta) {
         if (!tarjeta.name || !tarjeta.color) return
-        btnr.append('.btnr')   
+        btnr.append(':button')   
         
     });
 
@@ -75,16 +89,27 @@ btnr.on("click", function(color){
     send_content.on("click", function(){
         console.log('esto q');
       socket.emit("cam_tarjeta", {
-          'btnr': $(".btnr").val()
+          'button': $(":button").val()
       });
            
-        $.post("http://localhost:3001/api/tarjetas",{
-        ".rojo" : $(".btnr").val(),
-        
+        $.post("http://localhost:3001/tarjeta",{
+        name : $(":button").val(),
+        color : $(":button").val()        
         });
-
-     send_content.val('');
+        
+        send_content.val(' ');
     });
+
+    //var load_content = function(url){
+    //    $.get( url, function( data ) {
+    //        boton_cambio.empty()
+    //        $.each( data.tarjetas, function( i, tarjeta ) {
+    //            boton_cambio.append()
+    //        })
+    //    })
+    //}
+    //load_content('http://'+ window.location.host +'/api/tarjeta')
+    
     
 
 </script>

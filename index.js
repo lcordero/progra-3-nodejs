@@ -22,7 +22,7 @@ mongoose.connect(config.db, (err, res) => {
     client.send("nueva conexion");
     client.broadcast.send("nueva conexion");
 
-    client.on('cam_tarjeta', function(tarjetas) {
+    client.on('cam_tarjeta', function(tarjeta) {
       console.log(tarjeta)
       client.emit('cam_tarjeta', tarjeta);
       client.broadcast.emit('cam_tarjeta', tarjeta);

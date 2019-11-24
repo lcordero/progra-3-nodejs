@@ -13,7 +13,7 @@ function getTarjetas (req, res) {
 }
 
 function saveTarjeta (req, res) {
-    console.log('POST /tarjeta')
+    console.log('POST /api/tarjeta')
 
     let tarjeta = new Tarjeta()
     tarjeta.name = req.body.name
