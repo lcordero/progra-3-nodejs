@@ -32,15 +32,18 @@
 <button class = "btna">amarillo</button>
 
 <script>
-   var btnr = $(".btnr")
-   var btnv = $(".btnv")
-   var btna = $(".btna")
-   var send_content = $('click')
+    btnr = $(".btnr")
+    btnv = $(".btnv")
+    btna = $(".btna")
+    boton_cambio = $(':button')
+    send_content = $(':button')
+    
 
-btnr.on("click", function(){
-    btnr.toggleClass("rojo")
-    console.log("primero")
+btnr.on("click", function(color){
+   $(".btnr").toggleClass("rojo")
+    console.log("red")
 });
+
 
  //$ (".btnr").click(function() {
  //    $(".btnr").toggleClass("rojo");
@@ -51,30 +54,30 @@ btnr.on("click", function(){
      $(".btnv").toggleClass("verde");
      console.log("click XC")
  });
-
+ 
  $ (".btna").click(function() {
      $(".btna").toggleClass("amarillo");
      console.log("click X/")
  });
-
+ 
     var socket = io.connect(window.location.host);
     socket.on('connect', function() {
         console.log('connect');
     });
 
-    socket.on('cambia', function(tarjetas) {
-        if (!tarjetas.name || !tarjetas.color) return
+    socket.on('cam_tarjeta', function(tarjeta) {
+        if (!tarjeta.name || !tarjeta.color) return
         btnr.append('.btnr')   
         
     });
 
 
     send_content.on("click", function(){
-      socket.emit("cambia", {
-          ".btnr" : $(".rojo").val(),
-        });
-      console.log('esto q');
-       
+        console.log('esto q');
+      socket.emit("cam_tarjeta", {
+          'btnr': $(".btnr").val()
+      });
+           
         $.post("http://localhost:3001/api/tarjetas",{
         ".rojo" : $(".btnr").val(),
         
