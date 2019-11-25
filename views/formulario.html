@@ -1,0 +1,61 @@
+<div id="main-container">
+    <input class="formu_name" placeholder="Name" />
+    <input class="formu_lastname" placeholder="Lastname"/>
+    <input class="formu_country" placeholder="Country" />
+    <button class="send">guardar</button>
+    <table style="width:100%" class="data_table">
+        
+      <tbody class="table_content">
+      </tbody>
+    </table>
+  </div>
+
+
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+<script>
+    var table_content = $(".table_content")
+    var send_content = $(".send")
+    var input_content = $(':input')
+    var socket = io.connect(window.location.host);
+    socket.on('connect', function() {
+        console.log('connect');
+        socket.send('connect!')
+    });
+    socket.on('new_formulario', function(formulario) {
+        if (!formulario.name || (!formulario.lastname) || (!formulario.country) return
+        table_content.append(`
+            <tr>
+            <th>`+ formulario.name +`</th>
+            <th>`+ formulario.lastname +`</th>
+            <th>`+ formulario.country +`</th>
+            </tr>
+        `)
+    });
+    socket.on('disconnect', function(){
+        console.log('Desconectado');
+    });
+    send_content.on("click", function(){
+        socket.emit('new_formulario', {
+            'name': $(".formu_name").val()
+            'lastname': $(".formu_lastname").val(),
+            'country': $(".formu_country").val()
+        });
+        input_content.val('');
+    })
+    var load_content = function(url){
+        $.get( url, function( data ) {
+            table_content.empty()
+            $.each( data.formularios, function( i, formulario ) {
+                table_content.append(`
+                    <tr>
+                    <th>`+ formulario.name +`</th>
+                    <th>`+ formulario.lastname +`</th>
+                    <th>`+ formulario.country +`</th>
+                    </tr>
+                `)
+            })
+        })
+    }
+    load_content('http://'+ window.location.host +'/api/formulario')
+</script>

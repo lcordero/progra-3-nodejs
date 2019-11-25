@@ -23,6 +23,8 @@ app.get('/login', (req, res) => {
   res.render('login')
 })
 
-
+app.get('/formulario', (req, res) => {
+  res.sendFile(path.join(viewsPath+'formulario.html'));
+})
 
 module.exports = app

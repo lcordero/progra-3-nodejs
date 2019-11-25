@@ -1,0 +1,42 @@
+<form id="formulario" method="post">
+
+       <div class="button guardar">
+    <button class="btn" onclick="return continuar();">Guardar</button>
+   <button type="submit" class="btn" onclick="return continuar();">guardar</button>
+  <input type="name" name="name" value="" placeholder="Tu name">
+  <br><br>
+  <input type="lastname" name="lastname" value="" placeholder="Tu lastname">
+  <br><br>
+  <input type="coutry" name="country" value="" placeholder="Tu contry">>
+    </div>
+   </div>
+</form>
+<script type="text/javascript">
+  const formformulario = document.querySelector('#formulario')
+  const formData = new FormData(formformulario)
+  formformulario.addEventListener('submit', event => {
+    event.preventDefault()
+    fetch('/api/signin', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      localStorage.setItem('token', data.token)
+    })
+  })
+
+  $(()=>{
+    $("#send").click(()=>{
+        $("#datos").append(`
+        <tr class=usuario>
+        <td>${$("#nombre").val()}</td>
+        <td>${$("#lastname").val()}</td>
+        <td>${$("#country").val()}</td>
+        <td><button class=mostrar>Mostrar ID</button></td>
+        </tr>
+        `)
+    })
+
+})
+</script>

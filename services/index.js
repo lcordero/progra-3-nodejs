@@ -38,6 +38,6 @@ function decodeToken (token) {
 }
 
 module.exports = {
-  createToken,
+  createToken
   decodeToken
 }
