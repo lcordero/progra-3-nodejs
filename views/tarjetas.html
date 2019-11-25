@@ -39,10 +39,10 @@
     send_content = $(':button')
 
     function tarjeta(name,color){
-        this.name=" ";
-        this.color=" ";
+        this.name = name;
+        this.color = color;
     }
-
+    
 btnr.on("click", function(name){
    $(".btnr").toggleClass("rojo")
     console.log("red")
@@ -89,28 +89,28 @@ btnr.on("click", function(color){
 
     send_content.on("click", function(){
         console.log(tarjeta);
-      socket.emit("cam_tarjeta", {
-          'name': $(":button.name").val(),
-          'color': $(":button.id").val()
-      });
-           
+      
+           name = $(this).attr('name');
         $.post("http://localhost:3001/api/tarjeta",{
-        name : $(":button.name").val(),
-        color : $(":button.id").val()        
+        name : name,
+        color : $(this).hasClass(name)
         });
         
         send_content.val();
     });
-
-    //var load_content = function(url){
-    //    $.get( url, function( data ) {
-    //        boton_cambio.empty()
-    //        $.each( data.tarjetas, function( i, tarjeta ) {
-    //            boton_cambio.append()
-    //        })
-    //    })
-    //}
-    //load_content('http://'+ window.location.host +'/api/tarjeta')
+    
+   // $( document ).ready(function() {
+     //   console.log('El documento se cargo');
+    //})    
+    var load_content =function(url) {
+        $.get( url, function( data ) {
+            boton_cambio.empty()
+            $.each( data.tarjeta, function( i, tarjeta ) {
+                boton_cambio.append()
+            })
+        })
+    }
+    load_content('http://'+ window.location.host +'/tarjeta')
     
     
 
