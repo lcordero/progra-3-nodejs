@@ -25,11 +25,11 @@
     }
 </style>
 
-<button class = "btnr" name="rojo">rojo</button>
+<button class = "btnr" name="rojo" id="1">rojo</button>
 <br>
-<button class = "btnv" name="verde">verde</button>
+<button class = "btnv" name="verde" id="2">verde</button>
 <br>
-<button class = "btna" name="amarillo">amarillo</button>
+<button class = "btna" name="amarillo" id="3">amarillo</button>
 
 <script>
     btnr = $(".btnr")
@@ -37,18 +37,19 @@
     btna = $(".btna")
     boton_cambio = $(':button')
     send_content = $(':button')
+
     function tarjeta(name,color){
-        this.name=name;
-        this.color=color;
+        this.name=" ";
+        this.color=" ";
     }
 
-btnr.on("click", function(color){
+btnr.on("click", function(name){
    $(".btnr").toggleClass("rojo")
     console.log("red")
 });
-btnr.on("click", function(name){
+btnr.on("click", function(color){
    $(".btnr").hasClass("rojo").toString();
-    console.log("1")
+    console.log("nombre")
 });
 
  //$ (".btnr").click(function() {
@@ -81,23 +82,24 @@ btnr.on("click", function(name){
 
     socket.on('cam_tarjeta', function(tarjeta) {
         if (!tarjeta.name || !tarjeta.color) return
-        btnr.append(':button')   
+        btnr.append('btnr, btnv, btna')   
         
     });
 
 
     send_content.on("click", function(){
-        console.log('esto q');
+        console.log(tarjeta);
       socket.emit("cam_tarjeta", {
-          'button': $(":button").val()
+          'name': $(":button.name").val(),
+          'color': $(":button.id").val()
       });
            
-        $.post("http://localhost:3001/tarjeta",{
-        name : $(":button").val(),
-        color : $(":button").val()        
+        $.post("http://localhost:3001/api/tarjeta",{
+        name : $(":button.name").val(),
+        color : $(":button.id").val()        
         });
         
-        send_content.val(' ');
+        send_content.val();
     });
 
     //var load_content = function(url){
