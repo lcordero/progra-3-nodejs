@@ -26,6 +26,10 @@ app.get('/product', (req, res) => {
   res.sendFile(path.join(viewsPath+'product.html'));
 })
 
+app.get('/tarjeta', (req, res) => {
+  res.sendFile(path.join(viewsPath+'tarjeta.html'));
+})
+
 
 
 module.exports = app
