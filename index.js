@@ -19,5 +19,25 @@ mongoose.connect(config.db, (err, res) => {
     })
   );
 
+  socket.on('connection', function(client) {
+      client.send("nueva conexion");
+      client.broadcast.send("nueva conexion");
+
+      client.on('card_color', function(color) {
+        console.log(color)
+        client.emit('card_color', color);
+        client.broadcast.emit('card_color', color);
+      });
+
+      client.on('message', function(msg) {
+          console.log(msg)
+          client.send(msg);
+          client.broadcast.send(msg);
+      });
+
+      client.on('disconnect', function() {
+          console.log('Desconectado');
+      });
+  });
 })
 

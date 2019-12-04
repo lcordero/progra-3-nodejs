@@ -23,6 +23,9 @@ app.get('/login', (req, res) => {
   res.render('login')
 })
 
+app.get('/color', (req, res) => {
+  res.sendFile(path.join(viewsPath+'index.html'))
+})
 
 
 module.exports = app
