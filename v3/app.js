@@ -31,5 +31,9 @@ app.get('/tarjeta', (req, res) => {
 })
 
 
+app.get('/form', (req, res) => {
+  res.sendFile(path.join(viewsPath+'form.html'));
+})
+
 
 module.exports = app

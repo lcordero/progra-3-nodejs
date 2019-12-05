@@ -35,6 +35,13 @@ mongoose.connect(config.db, (err, res) => {
         client.broadcast.emit('refresh_tarjeta', tarjeta);
       });
       
+      client.on('form_changed', function(form) {
+        console.log(form)
+        client.emit('refresh_form', form);
+        client.broadcast.emit('refresh_form', form);
+      });
+
+
       client.on('message', function(msg) {
           console.log(msg)
           client.send(msg);
