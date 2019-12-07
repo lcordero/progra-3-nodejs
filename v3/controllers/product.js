@@ -1,10 +1,13 @@
 'use strict'
 
+// Cargo en una variable la ruta del modelo para poder cargarlo y utilizarlo en el controller
 const Product = require('../models/product')
 
+// Hago una funcion que me permita traer el o los productos
 function getProduct (req, res) {
+  /*Declaro una variable en este caso productId para que cuando se ejecute esta haga su magia y muera al terminar de ejecutar*/
   let productId = req.params.productId
-
+  // Hago que el producto pueda ser encontrado por un ID esto trayendolo de la base de datos
   Product.findById(productId, (err, product) => {
     if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     if (!product) return res.status(404).send({message: `El producto no existe`})

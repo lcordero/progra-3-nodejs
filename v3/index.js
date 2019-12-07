@@ -10,7 +10,6 @@ mongoose.connect(config.db, (err, res) => {
     return console.log(`Error al conectar a la base de datos: ${err}`)
   }
   console.log('Conexión a la base de datos establecida...')
-
   
 
   let socket = io.listen(
@@ -18,6 +17,8 @@ mongoose.connect(config.db, (err, res) => {
       console.log(`API REST corriendo en http://localhost:${config.port}`)
     })
   );
+
+  
 
   socket.on('connection', function(client) {
       client.send("nueva conexion");
