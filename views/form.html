@@ -1,0 +1,56 @@
+<div id="banner-message">
+    <input type="hidden" class="id">
+    <input class="name" placeholder="Name" />
+    <input class="lastname" placeholder="Lastname" />
+    <input class="country" placeholder="Country" />
+</div>
+
+
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+<script>
+// ==== SOCKET ====
+// ==== SOCKET ====
+// ==== SOCKET ====
+// ==== SOCKET ====
+    var socket = io.connect(window.location.host);
+    socket.on('refresh_form', function(form) {
+        clear_form()
+        fill_form(form)
+    });
+    let form_inputs = $(":input")
+    form_inputs.on("focusout", function(e){
+        update_form()
+    })
+    let clear_form = function(){
+        form_inputs.val('')
+    }
+    let fill_form = function(form){
+        $('.id').val(form._id)
+        $('.name').val(form.name)
+        $('.lastname').val(form.lastname)
+        $('.country').val(form.country)
+    }
+    let update_form = function(){
+        let form_id = $('.id').val()
+        let form = {
+            '_id': form_id,
+            'name': $('.name').val(),
+            'lastname': $('.lastname').val(),
+            'country': $('.country').val()
+        }
+        $.ajax({
+            url: 'http://'+ window.location.host +'/api/form/'+form_id,
+            type: 'PUT',
+            data: form
+        });
+        socket.emit('form_changed', form);
+    }
+    let load_form = function(url){
+        $.get( url, function( data ) {
+            clear_form()
+            fill_form(data.form)
+        })
+    }
+    load_form('http://'+ window.location.host +'/api/form')
+</script>

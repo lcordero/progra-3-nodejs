@@ -21,8 +21,14 @@ app.use('/assets', [
 app.use('/api', api)
 app.get('/login', (req, res) => {
   res.render('login')
-})
 
+})
+app.get('/datos', (req, res) => {
+  res.sendFile(path.join(viewsPath+'datos.html'));
+})
+app.get('/form', (req, res) => {
+  res.sendFile(path.join(viewsPath+'form.html'));
+})
 
 
 module.exports = app
