@@ -4,6 +4,7 @@ const express = require('express')
 const productCtrl = require('../controllers/product')
 const userCtrl = require('../controllers/user')
 const tarjetaCtrl = require('../controllers/tarjeta')
+const NuevoMenuCtrl = require('../controllers/NuevoMenu')
 const auth = require('../middlewares/auth')
 const api = express.Router()
 
@@ -23,6 +24,12 @@ api.get('/private', auth, (req, res) => {
   res.status(200).send({ message: 'Tienes acceso' })
 })
 
+// rutas de agregar NuevoMenu
+api.get('/menu', NuevoMenuCtrl.getNuevoMenus)
+api.get('/menu/:NuevoMenuId', NuevoMenuCtrl.getNuevoMenu)
+api.post('/menu', NuevoMenuCtrl.saveNuevoMenu)
+api.put('/menu/:NuevoMenuId', NuevoMenuCtrl.updateNuevoMenu)
+api.delete('/menu/:NuevoMenuId', NuevoMenuCtrl.deleteNuevoMenu)
 
 api.get('/tarjeta', tarjetaCtrl.getTarjetas)
 api.put('/tarjeta/:tarjetaId', tarjetaCtrl.updateTarjeta)

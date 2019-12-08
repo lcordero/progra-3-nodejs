@@ -30,6 +30,10 @@ app.get('/tarjeta', (req, res) => {
   res.sendFile(path.join(viewsPath+'tarjeta.html'));
 })
 
+app.get('/NuevoMenu', (req, res) => {
+  res.sendFile(path.join(viewsPath+'NuevoMenu.html'));
+});
+
 
 
 module.exports = app

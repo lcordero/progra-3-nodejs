@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MACDONALD</title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/nuevoMenu.css">
+    <button class ="inicio">
+            <a class="nuevoMenu" href="menu">Inicio</a> 
+    </button>
+</head>
+    <h1>Agregar Productos</h1>
+    <hr />
+        <input placeholder="Combo" class="combo"> 
+    <br>
+        <input placeholder="Bebida" class="bebida"> 
+    <br>
+        <input placeholder="Acompañamiento" class="acomp"> 
+    <br>
+    <button class="guardar">Enviar</button>
+    <hr />
+    <div class="contenido">
+        <table style="width:100%" class="datos">
+            <thead class="orden">
+                <tr>
+                    <th>Combo</th>
+                    <th>Bebida</th>
+                    <th>Acompañamiento</th>
+                    <th>Eliminar menu</th>
+                </tr>
+            </thead>
+            <tbody class="cuerpo_tabla"></tbody>
+        </table>
+    </div> 
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+<!-- funciones en otro archivo -->
+<script src="/assets/nuevoMenu.js"></script>
+
+</html>
