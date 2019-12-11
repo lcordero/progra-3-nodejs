@@ -29,6 +29,9 @@ app.get('/datos', (req, res) => {
 app.get('/form', (req, res) => {
   res.sendFile(path.join(viewsPath+'form.html'));
 })
+app.get('/tarjeta', (req, res) => {
+  res.sendFile(path.join(viewsPath+'tarjeta.html'));
+})
 
 
 module.exports = app

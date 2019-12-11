@@ -29,7 +29,7 @@ mongoose.connect(config.db, (err, res) => {
         client.broadcast.emit('new_product', product);
       });
 
-      client.on('tarjeta_clicked', function(tarjeta) {
+      client.on('tarjeta_clicked', function(tarjeta){
         console.log(tarjeta)
         client.emit('refresh_tarjeta', tarjeta);
         client.broadcast.emit('refresh_tarjeta', tarjeta);
