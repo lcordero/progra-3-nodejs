@@ -1,0 +1,57 @@
+<! DOCTYPE html>
+< html >
+< cabeza >
+    < link  href = " https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css " 
+        rel = " hoja de estilo " 
+        integridad = " sha384-ggOyR0iXCbMQv3Xipma34MD + dH / 1fQ784 / j6cY / iJTQUOhcWr7x9JvoRxT2MZw1T " 
+        crossorigin = " anónimo " >
+</ cabeza >
+< cuerpo >
+< div  class = " container " >
+< Br >
+< div  class = " jumbotron " >
+< h1  class = " display-4 " > Enviar todo </ h1 >
+< Br >
+< input  id = " name "  class = " form-control "  placeholder = " Name " >
+< Br >
+< textarea  id = " description "  class = " form-control "  placeholder = " Su descripción aquí " >
+</ textarea >
+< Br >
+< button  id = " send "  class = " btn btn-success " > Enviar </ button >
+</ div >
+< div  id = " todos " > 0000 </ div >
+</ div >
+< guión
+    src = " https://code.jquery.com/jquery-3.4.1.min.js "
+    integridad = " sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo = "
+    crossorigin = " anónimo " > </ script >
+< guión >
+$ (() => {
+    función  addTodos ( todo ) {
+        $ ( " #todos " ). agregar ( `
+            <h4> $ { todo . nombre } </h4>
+            <p>   $ { todo . descripción } </p> ` )
+    }
+    
+    función  getTodos () {
+        $ ( " #todos " ). vacío ();
+        $ . get ( ' http: // localhost: 3000 / todos ' , ( data ) => {
+        los datos . forEach (addTodos);
+        })
+    }
+    
+    función  sendTodo ( todo ) {
+        $ . post ( ' http: // localhost: 3000 / todos ' , todo)
+    }
+    $ ( " #send " ). haga clic en (() => {
+        sendTodo ({
+          nombre :  $ ( " #nombre " ). val (),
+          descripción : $ ( " #description " ). val ()
+        });
+        getTodos ();
+    });
+    getTodos ();
+})
+</ script >
+</ cuerpo >
+</ html >
