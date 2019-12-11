@@ -4,7 +4,11 @@ const express = require('express')
 const productCtrl = require('../controllers/product')
 const userCtrl = require('../controllers/user')
 const tarjetaCtrl = require('../controllers/tarjeta')
+<<<<<<< HEAD
 const NuevoMenuCtrl = require('../controllers/NuevoMenu')
+=======
+const formCtrl = require('../controllers/form')
+>>>>>>> 2e4ed2db4afca1d42c8e160a3cffb918ad7d79e4
 const auth = require('../middlewares/auth')
 const api = express.Router()
 
@@ -34,4 +38,7 @@ api.delete('/menu/:NuevoMenuId', NuevoMenuCtrl.deleteNuevoMenu)
 api.get('/tarjeta', tarjetaCtrl.getTarjetas)
 api.put('/tarjeta/:tarjetaId', tarjetaCtrl.updateTarjeta)
 
+
+api.get('/form', formCtrl.getForm)
+api.put('/form/:formId', formCtrl.updateForm)
 module.exports = api
