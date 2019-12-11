@@ -54,6 +54,7 @@
 
     var load_content = function(url){
         $.get( url, function( data ) {
+            console.log(url)
             table_content.empty()
             $.each( data.products, function( i, product ) {
                 table_content.append(`
