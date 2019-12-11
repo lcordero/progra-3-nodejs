@@ -18,8 +18,6 @@ mongoose.connect(config.db, (err, res) => {
     })
   );
 
-  
-
   socket.on('connection', function(client) {
       client.send("nueva conexion");
       client.broadcast.send("nueva conexion");
