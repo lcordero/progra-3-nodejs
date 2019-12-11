@@ -1,5 +1,5 @@
 module.exports = {
   port: process.env.PORT || 3001,
-  db: process.env.MONGODB_URI || 'mongodb+srv://alonso-v:Sito1199@cluster0-hunby.mongodb.net/v3?retryWrites=true&w=majority',
+  db: process.env.MONGODB_URI || 'mongodb+srv://alonso-v:Sito1199@cluster0-hunby.mongodb.net/form?retryWrites=true&w=majority',
   SECRET_TOKEN: 'miclavedetokens'
 }

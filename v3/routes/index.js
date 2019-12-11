@@ -5,6 +5,8 @@ const productCtrl = require('../controllers/product')
 const userCtrl = require('../controllers/user')
 const auth = require('../middlewares/auth')
 const api = express.Router()
+const formCtrl = require('../controllers/form')
+const tarjetaCtrl = require('../controllers/tarjeta')
 
 api.get('/product', productCtrl.getProducts)
 api.get('/product/:productId', productCtrl.getProduct)
@@ -22,4 +24,10 @@ api.get('/private', auth, (req, res) => {
   res.status(200).send({ message: 'Tienes acceso' })
 })
 
+api.get('/tarjeta', tarjetaCtrl.getTarjetas)
+api.put('/tarjeta/:tarjetaId', tarjetaCtrl.updateTarjeta)
+
+api.get('/form', formCtrl.getForm)
+api.put('/form/:formId', formCtrl.updateForm)
 module.exports = api
+
