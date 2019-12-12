@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>examen</title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/nuevoMenu.css"> -->
+
+</head>
+    <div class="contenido">
+            
+        <table style="width:100%" class="datos">
+            <thead class="orden">
+                <tr>
+                    <th style="display : none">id</th>
+                    <th>name</th>
+                    <th>address</th>
+                    <th>phone</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody class="cuerpo_tabla"></tbody>
+            <button></button>
+        </table>
+    </div> 
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+<!-- funciones en otro archivo -->
+<!-- <script src="/assets/usuario.js"></script> -->
+</html>
+<script>
+    var cuerpo_tabla= $(".cuerpo_tabla")
+    var contenido= $(".contenido")
+// actualizo 
+let reassign = function(){
+    let button = $(".edit")
+    button.on("click", function(e){
+        console.log(e.target)
+        let edit = e.target
+        update_usuario(edit)
+    })
+}
+
+var update_usuario=  function(data){
+        let usuario_id = $('.id').val()
+        console.log(usuario_id)
+        let usuario = {
+            // '_id': usuario_id,
+            'name': $('.name').val(),
+            'address': $('.address').val(),
+            'phone': $('.phone').val()
+        }
+        $.ajax({
+            url: 'http://'+ window.location.host +'/api/usuario/'+this.id,
+            type: 'PUT',
+            data: usuario
+        })
+
+    }
+
+// elimino la data
+var eliminar=$(":button")
+
+cuerpo_tabla.on("click", ".delete", function(data){
+    let id = (".id").val
+    $(this).closest('tr').remove()
+    let menu_eli= $.ajax({
+        url: 'http://'+ window.location.host +'/api/usuario/'+this.id,
+        type: 'DELETE' }) 
+})
+
+//  carga la info
+var load_content = function(){
+
+        $.get( 'http://localhost:3001/api/usuario', function( data ) {
+            console.log(data)
+            cuerpo_tabla.empty()
+            $.each( data, function( index, usuario ) {
+                console.log(data)
+                cuerpo_tabla.append(`
+                    <tr>
+                    <th style="display : none"><input text="submit" value="`+ usuario._id +`"></th>
+                    <th><input class="name" text="submit" value="`+ usuario.name +`"></th>
+                    <th><input class="address" text="submit" value="`+ usuario.address +`"></th>
+                    <th><input class="phone" text="submit" value="`+ usuario.phone +`"></th>
+                    <th><button class="edit" id="`+ usuario._id +`">Edit</button><button class="delete" id="`+ usuario._id +`">delete</button></th>
+                    </tr>
+                `)
+            })
+            reassign()
+        })
+    }
+    load_content('http://'+ window.location.host +'/api/usuario')
+
+</script>
+

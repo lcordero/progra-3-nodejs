@@ -5,8 +5,22 @@ const productCtrl = require('../controllers/product')
 const userCtrl = require('../controllers/user')
 const tarjetaCtrl = require('../controllers/tarjeta')
 const formCtrl = require('../controllers/form')
+// usuarios
+const usuarioCtrl = require('../controllers/usuario')
+
+// usuarios
 const auth = require('../middlewares/auth')
 const api = express.Router()
+
+// examen usuarios
+api.get('/usuario', usuarioCtrl.getUsuarios)
+api.put('/usuario/:usuarioId', usuarioCtrl.updateUsuario)
+api.delete('/usuario/:usuarioId', usuarioCtrl.deleteUsuario)
+
+
+
+// examen usuarios arriba
+
 
 api.get('/product', productCtrl.getProducts)
 api.get('/product/:productId', productCtrl.getProduct)
