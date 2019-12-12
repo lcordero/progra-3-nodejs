@@ -4,11 +4,24 @@
     width: 100%;
     padding: 50px;
 }
+.delete {
+    width: 80px;
+    height: 20px;
+    color: rgb(3, 10, 107);
+}
+.edit {
+    width: 80px;
+    height: 20px;
+    color: green;
+}
+th, td {
+    background: rgb(236, 234, 108);
+}
 </style>
-<input class="name" placeholder="customername" />
+<!-- <input class="customername" placeholder="customername" />
 <input class="anddress" placeholder="anddress" />
 <input class="phone" placeholder="phone" />
-<button class="agregar">Agregar</button>
+<button class="agregar">Agregar</button> -->
 <table class="datos">
     <thead class="header">
         <tr>
@@ -30,6 +43,8 @@
     var contenido = $(".contenido")
     var agrega = $(".agregar")
     var inputes = $(':input')
+    var borrar = $('.borra')
+    // var editar = $('.edit')
 
     var socket = io.connect(window.location.host);
     socket.on('conecte', function() {
@@ -37,25 +52,27 @@
         socket.send('conecte')
     });
 
-    socket.on('new_user', function(usuarios) {
-        if (!usuarios.customername || !usuarios.anddress || !usuarios.phone) return
-        contenido.append(`
-            <tr>
-            <th>`+ usuarios.customername +`</th>
-            <th>`+ usuarios.anddress +`</th>
-            <th>`+ usuarios.phone +`</th>
-            </tr>
-        `)
-    });
+    // socket.on('new_user', function(usuarios) {
+    //     if (!usuarios.customername || !usuarios.anddress || !usuarios.phone) return
+    //     contenido.append(`
+    //         <tr>
+    //         <th>`+ usuarios.customername +`</th>
+    //         <th>`+ usuarios.anddress +`</th>
+    //         <th>`+ usuarios.phone +`</th>
+    //         </tr>
+    //     `)
+    // });
 
     socket.on('disconnect', function(){
         console.log('Desconectado');
     });
 
-    agrega.on("click", function(){
+    
+
+    borrar.on("click", function(){
         console.log("click")
         socket.emit('new_user', {
-            'customername': $(".name").val(), 
+            'customername': $(".customername").val(), 
             'anddress': $(".anddress").val(),
             'phone': $(".phone").val()
         });
@@ -71,6 +88,7 @@
                     <th>`+ usuarios.customername +`</th>
                     <th>`+ usuarios.anddress +`</th>
                     <th>`+ usuarios.phone +`</th>
+                    <td><button class="edit">Editar</button><button class="borra">Eliminar</button></td>
                     </tr>
                 `)
             })
