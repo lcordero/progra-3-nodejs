@@ -41,6 +41,12 @@ mongoose.connect(config.db, (err, res) => {
         client.broadcast.emit('refresh_form', form);
       });
 
+      client.on('new_usuario',  function(usuario) {
+        console.log(usuario)
+        client.emit('new_usuario', usuario);
+        client.broadcast.emit('new_usuario', usuario);
+      });
+
 
       client.on('message', function(msg) {
           console.log(msg)

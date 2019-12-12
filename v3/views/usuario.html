@@ -1,0 +1,110 @@
+<style>
+body {
+    background: green;
+}
+
+.edit {
+    background: red;
+    border-radius: 35px;
+    font-size: 15px;
+    color: yellow;
+    padding: 20px 30px;
+    border: solid yellow;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.borrar {
+    background: red;
+    border-radius: 35px;
+    font-size: 15px;
+    color: yellow;
+    padding: 20px 30px;
+    border: solid yellow;
+    font-family: 'Times New Roman', Times, serif;
+}
+</style>
+
+
+<div id="Contenedor">
+<table style="width:100%;">
+        <tr>
+            <th>Customer Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>   
+</table>
+<table style="width:100%;", class="Tablita">
+</table>
+<button class="edit">Editar</button>
+<button class="borrar">Borrar</button>
+</div>
+
+
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+
+<script>
+
+var Contenido_Cargando = $(".Tablita")
+var Editar = $(".edit")
+var Borrar = $(".borrar")
+
+var socket = io.connect(window.location.host);
+    socket.on('connect', function() {
+        console.log('Conectado con el Socket!!!');
+        socket.send('Se ha Conectado!')
+    });
+
+    socket.on('new_usuario', function(usuario) {
+        if (!usuario.customername || !usuario.address || !usuario.phone) return
+       Contenido_Cargando.append(`
+            <tr>
+            <th>`+ usuario.customername +`</th>
+            <th>`+ usuario.address +`</th>
+            <th>`+ usuario.phone +`</th>
+            </tr>
+        `)
+    });
+
+    socket.on('disconnect', function(){
+        console.log('Desconectado del Socket!');
+    });
+
+
+    Borrar.on('click', function (){
+    socket.emit('new_usuario')
+        $.ajax({
+  method: "DELETE",
+  url: "http://'+ window.location.host +'/api/usuario",
+  data: { customername: "Alonso", address: "Quebradas", phone: 87892071}
+})
+    })
+
+    Editar.on('click', function (){
+        socket.emit('new_usuario')
+        $.ajax({
+  method: "PUT",
+  url: "http://'+ window.location.host +'/api/usuario",
+  data: { customername: "Alonso", address: "Quebradas", phone: 87892071}
+})
+    })
+
+var Cargando_contenido = function(url){
+        $.get( url, function( data ) {
+            Contenido_Cargando.empty()
+            $.each( data.usuarios, function( i, usuario ) {
+                Contenido_Cargando.append(`
+                    <tr>
+                    <th>`+ usuario.customername +`</th>
+                    <th>`+ usuario.address +`</th>
+                    <th>`+ usuario.phone +`</th>
+                    </tr>
+                `)
+            })
+        })
+    }
+
+        
+    Cargando_contenido('http://'+ window.location.host +'/api/usuario')
+</script>

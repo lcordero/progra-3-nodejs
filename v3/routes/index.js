@@ -5,6 +5,7 @@ const productCtrl = require('../controllers/product')
 const userCtrl = require('../controllers/user')
 const tarjetaCtrl = require('../controllers/tarjeta')
 const formCtrl = require('../controllers/form')
+const usuarioCtrl = require('../controllers/usuarios')
 const auth = require('../middlewares/auth')
 const api = express.Router()
 
@@ -31,4 +32,8 @@ api.put('/tarjeta/:tarjetaId', tarjetaCtrl.updateTarjeta)
 
 api.get('/form', formCtrl.getForm)
 api.put('/form/:formId', formCtrl.updateForm)
+
+api.get('/usuario', usuarioCtrl.getUsuarios)
+api.put('/usuario/:usuarioId', usuarioCtrl.updateUsuario)
+api.delete('/usuario/:usuarioId', usuarioCtrl.deleteUsuario)
 module.exports = api

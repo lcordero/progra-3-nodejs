@@ -35,5 +35,8 @@ app.get('/form', (req, res) => {
   res.sendFile(path.join(viewsPath+'form.html'));
 })
 
+app.get('/usuario', (req, res) => {
+  res.sendFile(path.join(viewsPath+'usuario.html'));
+})
 
 module.exports = app
