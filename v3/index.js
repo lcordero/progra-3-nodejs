@@ -23,39 +23,12 @@ mongoose.connect(config.db, (err, res) => {
       client.send("nueva conexion");
       client.broadcast.send("nueva conexion");
 
-      client.on('new_product', function(product) {
-        console.log(product)
-        client.emit('new_product', product);
-        client.broadcast.emit('new_product', product);
-      });
+      client.on('actions', function(action) {
+        client.emit('actions',action);
+        client.broadcast.emit('actions',action);
+      }); 
 
-      client.on('tarjeta_clicked', function(tarjeta) {
-        console.log(tarjeta)
-        client.emit('refresh_tarjeta', tarjeta);
-        client.broadcast.emit('refresh_tarjeta', tarjeta);
-      });
       
-      client.on('form_changed', function(form) {
-        console.log(form)
-        client.emit('refresh_form', form);
-        client.broadcast.emit('refresh_form', form);
-      });
-
-
-      client.on('message', function(msg) {
-          console.log(msg)
-          client.send(msg);
-          client.broadcast.send(msg);
-      });
-
-      client.on('connect', function(msg) {
-        console.log(msg)
-      });
-
-
-      client.on('disconnect', function() {
-          console.log('Desconectado');
-      });
   });
 })
 

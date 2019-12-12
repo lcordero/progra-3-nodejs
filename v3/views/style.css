@@ -1,0 +1,19 @@
+
+body{
+  background-image: url("/assets/wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#data_table, td,tr{
+    border-collapse: collapse;
+    border-radius: 6px;;
+    border: 2px solid #7a005e;
+    background-color:#ffbdf0 ;
+    padding: 2px;
+}
+button{
+    border-radius: 5px;
+    background-color: #00ff88;
+    font-size: 15px;
+}
