@@ -1,9 +1,7 @@
 <div id="main-container">
-    <form class="send">
-            <input class="prod_name"  placeholder="ProductName" />
-            <input class="prod_price" placeholder="ProductPrice" />
-
-    </form>
+    <input class="prod_name" placeholder="ProductName" />
+    <input class="prod_price" placeholder="ProductPrice" />
+    <button class="send">New</button>
     <table style="width:100%" class="data_table">
         <thead class="header">
             <tr>
@@ -24,10 +22,10 @@
     var send_content = $(".send")
     var input_content = $(':input')
 
-    
     var socket = io.connect(window.location.host);
     socket.on('connect', function() {
         console.log('connect');
+        socket.send('connect yujuu!')
     });
 
     socket.on('new_product', function(product) {
@@ -49,14 +47,11 @@
             'name': $(".prod_name").val(), 
             'price': $(".prod_price").val()
         });
-        $.post("http://localhost:3001/api/product",
-        {
-            'name':prod_name.val(),
-            'price':prod_price.val()
-        })
-
         input_content.val('');
+
     })
+
+    
 
     var load_content = function(url){
         $.get( url, function( data ) {
@@ -73,4 +68,6 @@
     }
 
     load_content('http://'+ window.location.host +'/api/product')
+
+
 </script>

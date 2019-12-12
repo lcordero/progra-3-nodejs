@@ -1,0 +1,136 @@
+<div id="main-container">
+        <input type="hidden" class="id">
+        <input class="name" placeholder="Name" />
+        <input class="address" placeholder="Address" />
+        <input class="phone" placeholder="Phone" />
+    <button class="borrar">Delete</button>
+    <button class="editar">Edit</button>
+    <table style="width:100%" class="data_table">
+        <thead class="header">
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+            </tr>
+        </thead>
+      <tbody class="tabla">
+      </tbody>
+    </table>
+  </div>
+
+  <a href="/Borrar/<%= usua[i]._id %>" class="btn btn-danger">Borrar</a>
+
+  <script src="/assets/jquery.js"></script>
+  <script src="/assets/socket.io.js"></script>
+
+
+<script>
+    var tabla_contenedora = $(".tabla")
+    var input_contenedor = $(":input")
+
+    
+
+    var socket = io.connect(window.location.host);
+ 
+    socket.on('new_usuario', function(usuario) {
+        if (!usuario.name || !usuario.address || !usuario.phone) return
+        tabla_contenedora.append(`
+            <tr>
+            <th>`+ usuario.name +`</th>
+            <th>`+ usuario.address +`</th>
+            <th>`+ usuario.phone +`</th>
+            </tr>
+        `)
+    });
+
+    socket.emit('new_usurio', {
+            'name': $(".name").val(), 
+            'address': $(".address").val(),
+            'phone': $(".phone").val()
+        });
+        $.post("http://localhost:3001/api/usuarios",
+        {
+            'name':name.val(),
+            'address':address.val(),
+            'phone':phone.val()
+        })
+
+        input_contenedor.val('');
+    
+
+
+    var load_content = function(url){
+        $.get( url, function( data ) {
+            tabla_contenedora.empty()
+            $.each( data.usuario, function( i, usuario ) {
+                tabla_contenedora.append(`
+                    <tr>
+                    <th>`+ usuario.name +`</th>
+                    <th>`+ usuario.address +`</th>
+                    <th>`+ usuario.phone +`</th>
+                    </tr>
+                `)
+            })
+        })
+    }
+
+    var actualizar = $(".editar")
+
+     actualizar.on("click", function(){
+        let usuario_id = $('.id').val()
+        let usua = {
+            '_id': usuario_id,
+            'name': $('.name').val(),
+            'address': $('.address').val(),
+            'phone': $('.phone').val()
+        }
+        $.ajax({
+            url: 'http://'+ window.location.host +'/api/usuarios/'+usuario_id,
+            type: 'PUT',
+            data: usua
+        });
+        socket.emit('usurios_r', usua);
+    })
+
+
+
+
+    load_content('http://'+ window.location.host +'/api/usuarios')
+
+
+    
+
+
+
+    var eliminar = $(".borrar")
+
+     eliminar.on("click", function(){
+        let usuario_id = $('.id').val()
+        let usua = {
+            '_id': usuario_id,
+            'name': $('.name').val(),
+            'address': $('.address').val(),
+            'phone': $('.phone').val()
+        }
+        $.ajax({
+            url: 'http://'+ window.location.host +'/api/usuarios/'+usuario_id,
+            type: 'DELETE',
+            data: usua
+        });
+        socket.emit('usurios_r', usua);
+    })
+
+
+
+
+    load_content('http://'+ window.location.host +'/api/usuarios')
+
+
+
+
+
+
+</script>
+
+
+
