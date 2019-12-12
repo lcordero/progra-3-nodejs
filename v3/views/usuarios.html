@@ -1,0 +1,47 @@
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+
+<style>
+.datos {
+    width: 100%;
+    padding: 50px;
+}
+</style>
+<div>
+<table class="datos">
+    <thead class="header">
+        <tr>
+        <th>Customer Name</th>
+        <th>Anddress</th>
+        <th>Phone</th>
+        <th>Action</th>
+        </tr>
+        <tr>
+            <!-- <td></td><td><button></button></td> -->
+        </tr>
+    </thead>
+    <tbody class="contenido">
+    </tbody>
+</table>
+</div>
+
+<script>
+    var contenido = $(".contenido")
+
+    var t_contenido = function(url){
+        $.get( url, function( data ) {
+            contenido.empty()
+            $.each( data.usuarios, function( i, usuarios ) {
+                contenido.append(`
+                    <tr>
+                    <th>`+ usuarios.customername +`</th>
+                    <th>`+ usuarios.anddress +`</th>
+                    <th>`+ usuarios.phone +`</th>
+                    </tr>
+                `)
+            })
+        })
+    }
+
+    t_contenido('http://'+ window.location.host +'/api/usuarios')
+</script>
