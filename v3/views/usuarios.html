@@ -1,32 +1,31 @@
-<script src="/assets/jquery.js"></script>
-<script src="/assets/socket.io.js"></script>
-
+<div>
 <style>
 .datos {
     width: 100%;
     padding: 50px;
 }
 </style>
-<div>
+
 <table class="datos">
     <thead class="header">
         <tr>
         <th>Customer Name</th>
         <th>Anddress</th>
         <th>Phone</th>
-        <th>Action</th>
-        </tr>
-        <tr>
-            <!-- <td></td><td><button></button></td> -->
+        <th>Action</th>            
         </tr>
     </thead>
     <tbody class="contenido">
+        
     </tbody>
 </table>
 </div>
 
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
 <script>
     var contenido = $(".contenido")
+
 
     var t_contenido = function(url){
         $.get( url, function( data ) {

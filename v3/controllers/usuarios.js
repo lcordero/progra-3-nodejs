@@ -2,12 +2,13 @@
 
 const Usuarios = require('../models/usuarios')
 
-function getUsuarioss (req, res) {
-  Usuarios.find({}, (err, usuarioss) => {
+function getUsuarios (req, res) {
+  console.log("wtf")
+  Usuarios.find({}, (err, usuarios) => {
     if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
-    if (!usuarioss) return res.status(404).send({message: 'No existen usuariosos'})
+    if (!usuarios) return res.status(404).send({message: 'No existen usuariosos'})
 
-    res.send(200, { usuarioss })
+    res.send(200, { usuarios })
   })
 }
 
@@ -36,7 +37,7 @@ function deleteUsuarios (req, res) {
 }
 
 module.exports = {
-  getUsuarioss,
+  getUsuarios,
   updateUsuarios,
   deleteUsuarios
 }

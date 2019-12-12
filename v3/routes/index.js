@@ -33,7 +33,8 @@ api.put('/tarjeta/:tarjetaId', tarjetaCtrl.updateTarjeta)
 api.get('/form', formCtrl.getForm)
 api.put('/form/:formId', formCtrl.updateForm)
 
-api.get('/usuarios', usuariosCtrl.getUsuarioss)
+api.get('/usuarios', usuariosCtrl.getUsuarios)
 api.put('/usuarios/:usuarios', usuariosCtrl.updateUsuarios)
 api.delete('/usuarios/:usuariosId', usuariosCtrl.deleteUsuarios)
+
 module.exports = api
