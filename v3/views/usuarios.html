@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <title>Usuarios</title>
+    <body>
+    <button class=Load>Load Data</button>
+    <table id="cli_T">
+        <thead class="header">
+            <th>
+                <tbody class="body">        
+                            <tr><td><button class="editbtn1">edit</button><button class="deletebtn1">delete</button></td></tr>
+                            <tr><td><button class="editbtn2">edit</button><button class="deletebtn2">delete</button></td></tr>
+                            <tr><td><button class="editbtn3">edit</button><button class="deletebtn3">delete</button></td></tr>
+                            <tr></tr>
+                </tbody>    
+            </th>
+        </thead>
+    </table>
+    </body>
+    <script src="/assets/jquery.js"></script>
+    <script src="/assets/socket.io.js"></script>
+    <script>
+        var header= $(".header")
+        var btnedit1= $(".editbtn1")
+        var btnedit2= $(".editbtn2")
+        var btnedit3 = $(".editbtn3")
+        var btnload= $(".Load")
+        var body= $(".body")
+        var heardcomments = function(){
+            header.append(`
+                
+                <th>Customer Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Action</th>
+            `)}
+            var get_usuarios = function(t_usuarios){
+	
+	$.get("http://localhost:3001/api/usuarios", function( data ) {
+        
+        console.log(data)
+        var usuarios=data.usuarios
+		$.each (usuarios, function(index, usuarios){
+        
+        body.append (+'<tr class = "usuariosrw1">'
+        +'<td>'+ usuarios.id_cli+'</td>'
+		+'<td>'+ usuarios.name+'</td>'
+		+'<td>'+ usuarios.address+'</td>'
+    +'<td>'+ usuarios.phone+'</td>'
+    +'</tr>')
+})
+})} 
+
+$(".editbtn1").on('click',function(){
+    
+})
+
+            btnload.on('click', function(){
+                heardcomments()
+                get_usuarios()
+                })
+    </script>
+</html>

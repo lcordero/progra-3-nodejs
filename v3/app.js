@@ -15,17 +15,17 @@ app.set('view engine', 'html')
 
 app.use('/assets', [
   express.static(__dirname + '/node_modules/jquery/dist/'),
-  express.static(__dirname + '/node_modules/socket.io-client/dist/')
+  express.static(__dirname + '/node_modules/socket.io-client/dist/'),
+  express.static(__dirname + '/views/')
 ]);
 
 app.use('/api', api)
-app.get('/login', (req, res) => {
-  res.render('login')
-})
 app.get('/product', (req, res) => {
   res.sendFile(path.join(viewsPath+'product.html'));
 })
-
+app.get('/usuarios', (req, res) => {
+  res.sendFile(path.join(viewsPath+'usuarios.html'));
+})
 
 
 module.exports = app
