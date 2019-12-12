@@ -84,10 +84,10 @@ buttons.click(function( event ) {
     }else if (classAction == "save_edit"){
         console.log("este boton guarda lo editado");
         console.log(user_ID);
-        $.put('http://'+ window.location.host +'/api/user/'+user_ID,{name:$("#name").val(),address:$("#address").val(),phone:$("#phone").val()});
+        $.put('http://'+ window.location.host +'/api/user/'+user_ID,{name:$("#name").val(),address:$("#address").val(),phone:$("#phone").val()}, 
+        socket.emit("actions",classAction ));
         editor.hide();
         data_table.show();
-        socket.emit("actions",classAction );
     }
     load_content('http://'+ window.location.host +'/api/users')
   });
