@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const UsuariosSchema = Schema({
   customername: String,
   anddress: String,
-  phone: { type: Number, default: 0 },
+  phone: String
 })
 
 module.exports = mongoose.model('Usuarios', UsuariosSchema)

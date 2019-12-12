@@ -23,10 +23,10 @@ mongoose.connect(config.db, (err, res) => {
       client.send("nueva conexion");
       client.broadcast.send("nueva conexion");
 
-      client.on('new_product', function(product) {
-        console.log(product)
-        client.emit('new_product', product);
-        client.broadcast.emit('new_product', product);
+      client.on('new_user', function(usuarios) {
+        console.log(usuarios)
+        client.emit('new_user', usuarios);
+        client.broadcast.emit('new_user', usuarios);
       });
 
       client.on('tarjeta_clicked', function(tarjeta) {

@@ -5,7 +5,10 @@
     padding: 50px;
 }
 </style>
-
+<input class="name" placeholder="customername" />
+<input class="anddress" placeholder="anddress" />
+<input class="phone" placeholder="phone" />
+<button class="agregar">Agregar</button>
 <table class="datos">
     <thead class="header">
         <tr>
@@ -25,7 +28,39 @@
 <script src="/assets/socket.io.js"></script>
 <script>
     var contenido = $(".contenido")
+    var agrega = $(".agregar")
+    var inputes = $(':input')
 
+    var socket = io.connect(window.location.host);
+    socket.on('conecte', function() {
+        console.log('conecte');
+        socket.send('conecte')
+    });
+
+    socket.on('new_user', function(usuarios) {
+        if (!usuarios.customername || !usuarios.anddress || !usuarios.phone) return
+        contenido.append(`
+            <tr>
+            <th>`+ usuarios.customername +`</th>
+            <th>`+ usuarios.anddress +`</th>
+            <th>`+ usuarios.phone +`</th>
+            </tr>
+        `)
+    });
+
+    socket.on('disconnect', function(){
+        console.log('Desconectado');
+    });
+
+    agrega.on("click", function(){
+        console.log("click")
+        socket.emit('new_user', {
+            'customername': $(".name").val(), 
+            'anddress': $(".anddress").val(),
+            'phone': $(".phone").val()
+        });
+        inputes.val('');
+    })
 
     var t_contenido = function(url){
         $.get( url, function( data ) {

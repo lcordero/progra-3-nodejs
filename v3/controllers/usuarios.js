@@ -12,6 +12,23 @@ function getUsuarios (req, res) {
   })
 }
 
+function saveUsuarios (req, res) {
+  console.log('POST')
+  console.log(req.body)
+
+  let usuarios = new Usuarios()
+  usuarios.customername = req.body.customername
+  usuarios.anddress = req.body.anddress
+  usuarios.phone = req.body.phone
+  
+
+  usuarios.save((err, usuariosRegistro) => {
+    if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err} `})
+
+    res.status(200).send({ usuarios: usuariosRegistro })
+  })
+}
+
 function updateUsuarios (req, res) {
   let usuariosId = req.params.usuariosId
   let update = req.body
@@ -38,6 +55,7 @@ function deleteUsuarios (req, res) {
 
 module.exports = {
   getUsuarios,
+  saveUsuarios,
   updateUsuarios,
   deleteUsuarios
 }

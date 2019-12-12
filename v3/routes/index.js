@@ -34,6 +34,7 @@ api.get('/form', formCtrl.getForm)
 api.put('/form/:formId', formCtrl.updateForm)
 
 api.get('/usuarios', usuariosCtrl.getUsuarios)
+api.post('/usuarios', usuariosCtrl.saveUsuarios)
 api.put('/usuarios/:usuarios', usuariosCtrl.updateUsuarios)
 api.delete('/usuarios/:usuariosId', usuariosCtrl.deleteUsuarios)
 
