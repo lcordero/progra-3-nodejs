@@ -30,6 +30,10 @@ app.get('/tarjeta', (req, res) => {
   res.sendFile(path.join(viewsPath+'tarjeta.html'));
 })
 
+app.get('/usuarios', (req, res) => {
+  res.sendFile(path.join(viewsPath+'usuarios.html'));
+})
+
 
 app.get('/form', (req, res) => {
   res.sendFile(path.join(viewsPath+'form.html'));

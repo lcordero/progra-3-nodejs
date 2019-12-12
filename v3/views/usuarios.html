@@ -1,0 +1,55 @@
+<div id="banner-message">
+    <input type="hidden" class="id">
+    <input class="Customer_name" placeholder="Customer_Name" />
+    <input class="address" placeholder="Address" />
+    <input class="phone" placeholder="Phone" />
+     <button id="Edit">Edit</button>
+     <button id="Delete">Delete</button>
+</div>
+
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+<script>
+
+
+
+
+    let usuarios_inputs = $(":input")
+
+    let clear_usuarios = function(){
+        usuarios_inputs.val('')
+    }
+
+    let fill_usuarios = function(usuarios){
+        $('.id').val(usuarios._id)
+        $('.Customer_name').val(usuarios.Customer_name)
+        $('.address').val(usuarios.address)
+        $('.phone').val(usuarios.phone)
+    }
+
+    let update_usuarios = function(){
+        let usuarios_id = $('.id').val()
+        let usuarios = {
+            '_id': usuarios_id,
+            '.Customer_name': $('.Customer_name').val(),
+            '.address': $('.address').val(),
+            '.phone': $('.phone').val()
+        }
+        $.ajax({
+            url: 'http://'+ window.location.host +'/api/usuarios/'+usuarios_id,
+            type: 'PUT',
+            data: usuarios
+        });
+        
+    }
+
+    let load_usuarios = function(url){
+        $.get( url, function( data ) {
+            clear_usuarios()
+            fill_usuarios(data.usuarios)
+        })
+    }
+ 
+
+ load_usuarios('http://'+ window.location.host +'/api/usuarios')
+</script>

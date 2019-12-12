@@ -17,7 +17,7 @@
     var socket = io.connect(window.location.host);
     socket.on('refresh_form', function(form) {
         clear_form()
-        // load_form('http://'+ window.location.host +'/api/form')
+         load_form('http://'+ window.location.host +'/api/form')
         fill_form(form)
     });
 
