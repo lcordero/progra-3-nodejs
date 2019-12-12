@@ -18,10 +18,7 @@ th, td {
     background: rgb(236, 234, 108);
 }
 </style>
-<!-- <input class="customername" placeholder="customername" />
-<input class="anddress" placeholder="anddress" />
-<input class="phone" placeholder="phone" />
-<button class="agregar">Agregar</button> -->
+
 <table class="datos">
     <thead class="header">
         <tr>
@@ -67,14 +64,15 @@ th, td {
         console.log('Desconectado');
     });
 
-    
-
+    $( ".borra" ).click(function() {
+    $( "th" ).remove( "contenido" );
+    })
     borrar.on("click", function(){
         console.log("click")
-        socket.emit('new_user', {
-            'customername': $(".customername").val(), 
-            'anddress': $(".anddress").val(),
-            'phone': $(".phone").val()
+        socket.emit('borrar_user', {
+            'customername': $(".customername").remove(), 
+            'anddress': $(".anddress").remove(),
+            'phone': $(".phone").remove()
         });
         inputes.val('');
     })
