@@ -1,0 +1,74 @@
+<div id="main-container">
+    <input class="Nombre" placeholder="DatosName" />
+    <input class="Apellido" placeholder="DatosApellido" />
+    <input class="Pais" placeholder="DatosPais" />
+    <button class="send">New</button>
+    <table style="width:100%" class="data_table">
+        <thead class="header">
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Pais</th>
+            </tr>
+        </thead>
+      <tbody class="table_content">
+      </tbody>
+    </table>
+  </div>
+
+
+<script src="/assets/jquery.js"></script>
+<script src="/assets/socket.io.js"></script>
+<script>
+    var table_content = $(".table_content")
+    var send_content = $(".send")
+    var input_content = $(':input')
+
+    
+    var socket = io.connect(window.location.host);
+    socket.on('connect', function() {
+        console.log('connect');
+    });
+
+    socket.on('new_datos', function(datos) {
+        if (!datos.name || !datos.price) return
+        table_content.append(`
+            <tr>
+            <th>`+ datos.Nombre +`</th>
+            <th>`+ datos.Apellido +`</th>
+            <th>`+ Pais +`</th> 
+            </tr>
+        `)
+    });
+
+    socket.on('disconnect', function(){
+        console.log('Desconectado');
+    });
+
+    send_content.on("click", function(){
+        socket.emit('new_datos', {
+            'nombre': $(".nombre").val(), 
+            'Apellido': $(".Apellido").val(),
+            'Pais': $(".Pais")
+        });
+        input_content.val('');
+    })
+
+
+    var load_content = function(url){
+        $.get( url, function( data ) {
+            table_content.empty()
+            $.each( data.datos, function( i, datos ) {
+                table_content.append(`
+                    <tr>
+                    <th>`+ Nombre +`</th>
+                    <th>`+ Apellido +`</th>
+                    <th>`+ Pais +`</th> 
+                    </tr>
+                `)
+            })
+        })
+    }
+
+    load_content('http://'+ window.location.host +'/api/datos')
+</script>
